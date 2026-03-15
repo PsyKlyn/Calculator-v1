@@ -1,15 +1,19 @@
 let display = document.getElementById("display");
-
 let buttons = document.querySelectorAll("button");
+let historyList = document.getElementById("historyList");
+let sound = document.getElementById("clickSound");
 
 let current = "";
 
+/* Button click */
 
-buttons.forEach(button => {
+buttons.forEach(btn => {
 
-button.addEventListener("click", () => {
+btn.addEventListener("click", () => {
 
-let value = button.dataset.value;
+sound.play();
+
+let value = btn.dataset.value;
 
 handleInput(value);
 
@@ -45,12 +49,15 @@ display.value = current;
 
 }
 
+/* Calculation */
 
 function calculate(){
 
 try{
 
 let result = Function("return " + current)();
+
+addHistory(current + " = " + result);
 
 display.value = result;
 
@@ -66,28 +73,34 @@ display.value = "Error";
 
 }
 
-document.addEventListener("keydown", (e)=>{
+/* History */
+
+function addHistory(text){
+
+let li = document.createElement("li");
+
+li.textContent = text;
+
+historyList.prepend(li);
+
+}
+
+/* Keyboard support */
+
+document.addEventListener("keydown",(e)=>{
 
 let key = e.key;
 
 if("0123456789+-*/.%".includes(key))
-{
 handleInput(key);
-}
 
-if(key === "Enter")
-{
+if(key==="Enter")
 handleInput("=");
-}
 
-if(key === "Backspace")
-{
+if(key==="Backspace")
 handleInput("DEL");
-}
 
-if(key === "Escape")
-{
+if(key==="Escape")
 handleInput("C");
-}
 
 });
