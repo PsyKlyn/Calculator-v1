@@ -4,24 +4,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Glass Calculator</title>
+<title>Insane Glass Calculator</title>
 
 <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
 <div class="background"></div>
 
+<div class="app">
+
 <div class="calculator">
 
-<div class="display">
+<div class="top-bar">
 
-<input type="text" id="display" readonly>
+<h3>Calculator</h3>
+
+<button id="themeToggle">🌙</button>
 
 </div>
+
+<input type="text" id="display" readonly>
 
 <div class="buttons">
 
@@ -52,6 +56,18 @@
 </div>
 
 </div>
+
+<div class="history">
+
+<h3>History</h3>
+
+<ul id="historyList"></ul>
+
+</div>
+
+</div>
+
+<audio id="clickSound" src="click.mp3"></audio>
 
 <script src="script.js"></script>
 
