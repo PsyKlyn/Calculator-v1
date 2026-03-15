@@ -1,29 +1,67 @@
-
 let display = document.getElementById("display");
 
-function appendValue(value)
+let buttons = document.querySelectorAll("button");
+
+let current = "";
+
+
+buttons.forEach(button => {
+
+button.addEventListener("click", () => {
+
+let value = button.dataset.value;
+
+handleInput(value);
+
+});
+
+});
+
+
+function handleInput(value){
+
+if(value === "C")
 {
-    display.value += value;
+current = "";
+display.value = "";
 }
 
-function clearDisplay()
+else if(value === "DEL")
 {
-    display.value = "";
+current = current.slice(0,-1);
+display.value = current;
 }
 
-function deleteLast()
+else if(value === "=")
 {
-    display.value = display.value.slice(0,-1);
+calculate();
 }
 
-function calculate()
+else
 {
-    try
-    {
-        display.value = eval(display.value);
-    }
-    catch
-    {
-        display.value = "Error";
-    }
+current += value;
+display.value = current;
+}
+
+}
+
+
+function calculate(){
+
+try{
+
+let result = Function("return " + current)();
+
+display.value = result;
+
+current = result.toString();
+
+}
+
+catch{
+
+display.value = "Error";
+
+}
+
 }
