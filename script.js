@@ -65,3 +65,29 @@ display.value = "Error";
 }
 
 }
+
+document.addEventListener("keydown", (e)=>{
+
+let key = e.key;
+
+if("0123456789+-*/.%".includes(key))
+{
+handleInput(key);
+}
+
+if(key === "Enter")
+{
+handleInput("=");
+}
+
+if(key === "Backspace")
+{
+handleInput("DEL");
+}
+
+if(key === "Escape")
+{
+handleInput("C");
+}
+
+});
